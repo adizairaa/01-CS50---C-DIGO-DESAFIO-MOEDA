@@ -1,0 +1,52 @@
+#include <cs50.h>
+#include <stdio.h>
+#include <math.h>
+
+int main(void)
+{
+    //1 Definir os valores das moedas em centavos
+    int cinquenta = 50;
+    int vinteCinco = 25;
+    int dez = 10;
+    int cinco = 5;
+
+    // 2 definir variáveis para armazenar o troco em centavos e o número de moedas
+    int trocoCentavos = 0;
+    int count = 0;
+
+    do
+    {
+        float troco = get_float("Troco devido (R$): ");
+   trocoCentavos = round(troco * 100); //  Sempre multiplicar por 100 para converter reais para centavos e arredondando
+    //O round() é usado para garantir que o valor seja arredondado corretamente para o inteiro mais próximo.
+    }    
+    while (trocoCentavos < 0);// se o valor do troco for negativo, o programa vai continuar pedindo até que o usuário forneça um valor não negativo.
+
+   
+    while (trocoCentavos >= cinquenta)
+    {
+        trocoCentavos -= cinquenta;
+        count++;
+    }
+
+    while (trocoCentavos >= vinteCinco)
+    {
+        trocoCentavos -= vinteCinco;
+        count++;
+    }
+
+    while (trocoCentavos >= dez)
+    {
+        trocoCentavos -= dez;
+        count++;
+    }
+
+    while (trocoCentavos >= cinco)
+    {
+        trocoCentavos -= cinco;
+        count++;
+    }
+
+
+    printf("Número mínimo de moedas: %i\n", count);
+}
