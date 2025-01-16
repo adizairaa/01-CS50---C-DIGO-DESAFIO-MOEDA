@@ -1,0 +1,34 @@
+#include <cs50.h>
+#include <stdio.h>
+#include <math.h>
+
+int main(void)
+{
+    // Solicitar o troco 
+    float change;
+    do
+    {
+        change = get_float("Change owed: ");
+    }
+    while (change < 0);
+
+    // Converter para centavos e arredondar
+    int cents = round(change * 100);
+
+    // Definir os valores das moedas
+    int coins[] = {25, 10, 5, 1};// lembrar da aula teorica de um Array, o loop percorre todas as moedas disponíveis no array coins:
+                                   // i = 0: moeda de 25 centavos,
+                                   // i = 1: moeda de 10 centavos,
+                                   // i = 2: moeda de 5 centavos,
+                                   // i = 3: moeda de 1 centavo.
+    int count = 0;
+
+    for (int i = 0; i < 4; i++)
+    {
+        count += cents / coins[i];  // Contar quantas moedas desse tipo
+        cents %= coins[i];         // Atualizar o restante do troco
+    }
+
+    // Exibir o número total de moedas
+    printf("%i\n", count);
+}
